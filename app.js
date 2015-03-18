@@ -131,16 +131,17 @@ AppView = Backbone.View.extend({
     'submit #this-is-ze-form': 'urlChanged',
   },
   
-  onUrlFetchSuccess: function(args) {
+  onUrlFetchSuccess: function(event) {
     console.log('onUrlFetchSuccess')
 
     this.model.updateFetchedPage(this.DATA);
-    console.debug(args)
+    console.debug(event)
   },
-  onUrlFetchError: function(args) {
+  onUrlFetchError: function(event) {
     console.log('onUrlFetchError')
-    this.model.updateFetchedPage(this.DATA);
-    console.debug(args)
+    // this.model.updateFetchedPage(this.DATA);
+    this.model.updateFetchedPage(event.responseText)
+    console.debug(event)
   },
 
   urlChanged: function (x) {
